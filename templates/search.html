@@ -1,0 +1,37 @@
+{% extends "home.html" %}
+
+{% block navigator %}
+	{% if offset==0 %}
+		{% if not query %}
+			<a style="margin-left: 10px;" href="{{ "search?category="+str(category)+"&min="+str(min_price)+"&max="+str(max_price)+"&p="+str(offset+1) }}">=></a>
+		{% else %}
+			<a style="margin-left: 10px;" href="{{ "search?category="+str(category)+"&q="+query+"&min="+str(min_price)+"&max="+str(max_price)+"&p="+str(offset+1) }}">=></a>
+		{% end %}
+	{% else %}
+		{% if not query %}
+			<a style="margin-right:10px;" href="{{ "search?category="+str(category)+"&min="+str(min_price)+"&max="+str(max_price)+"&p="+str(offset-1) }}"><=</a>
+			{% if len(deals)>0 %}
+				<a style="margin-left: 10px;" href="{{ "search?category="+str(category)+"&min="+str(min_price)+"&max="+str(max_price)+"&p="+str(offset+1) }}">=></a>
+			{% end %}
+		{% else %}
+			<a style="margin-right:10px;" href="{{ "search?category="+str(category)+"&q="+query+"&min="+str(min_price)+"&max="+str(max_price)+"&p="+str(offset-1) }}"><=</a>
+			{% if len(deals)>0 %}
+				<a style="margin-left: 10px;" href="{{ "search?category="+str(category)+"&q="+query+"&min="+str(min_price)+"&max="+str(max_price)+"&p="+str(offset+1) }}">=></a>
+			{% end %}
+		{% end %}
+	{% end %}
+{% end %}
+
+{% block content %}
+	<div id="content_show_deals" class="content">
+		<div id="content_deals_container">
+			{% if deals and len(deals)>0 %}
+				{% for deal in deals %}
+					{{ modules.Deal(deal) }}
+				{% end %}
+			{% else %}
+				No more results found
+			{% end %}
+		</div>
+	</div>
+{% end %}

@@ -1,0 +1,48 @@
+{% extends "home.html" %}
+
+{% block navigator %}
+{% end %}
+
+{% block content %}
+	<div id="wishlist_container" class="content">
+		<div id="wishlist_user_info">
+			<div id="wishlist_user_thumb"><img src="{{ user["fb_thumbnail"] }}"/></div>
+			<div id="wishlist_user_name">{{ user["fb_username"] }}</div>
+			<div class="sep"></div>
+		</div>
+		
+		<div id="wishlist_input">
+			<label>Category</label>
+			<select id="wishlist_category">
+				<option value="-1">--</option>
+				<option value="0">Baby&Kids Stuff</option><option value="10">Book</option><option value="20">Cars&Accessories</option>
+				<option value="30">Clothes&Accessories</option><option value="40">Collectibles</option><option value="50">Computers</option>
+				<option value="60">Crafts</option><option value="70">Electronics</option><option value="80">Food</option>
+				<option value="90">Furniture</option><option value="100">Health&Beauty</option><option value="110">Home&Garden</option>
+				<option value="120">Jewelry</option><option value="130">Movies&Music&Video games</option><option value="140">Musical Instruments</option>
+				<option value="150">Office</option><option value="160">Sports&Bicycles</option><option value="170">Tickets</option>
+			</select>
+			<br/>
+			<br/>
+			
+			<textarea id="wishlist_textarea" cols=50 rows=2></textarea>
+			<a href="#" onclick="postNewWish(this); return false;">Make a wish</a>
+		</div>
+		
+		<div id="wishlist_items">
+			{% for wish in wishlist %}
+				<div class="wishlist_item" wish_id="{{ wish["id"] }}">
+					<div class="wishlist_item_content">
+						<span class="wishlist_item_content_text">{{ wish["content"] }}</span>
+						<span class="wishlist_item_content_date">{{ wish["created_at"] }}</span>
+					</div>
+					<div class="wishlist_item_control">
+						<a href="#" onclick="closeWish(this); return false;">Close</a>
+					</div>
+					<div class="sep"></div>
+				</div>
+			{% end %}
+			<div class="sep"></div>
+		</div>
+	</div>
+{% end %}

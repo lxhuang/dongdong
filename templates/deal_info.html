@@ -1,0 +1,55 @@
+{% extends "home.html" %}
+
+{% block navigator %}
+{% end %}
+
+{% block content %}
+	<div id="content_deal_details" class="content" dealid="{{ deal_info["id"] }}">
+		<div id="deal_details_text">
+			<div id="deal_details_head" style="margin-bottom:5px;">
+				<div id="deal_details_simple_desc">{{ deal_info["simple_desc"] }}</div>
+				<div id="deal_details_price"> {{ str(deal_info["min_price"])+"$-"+str(deal_info["max_price"])+"$" }} </div>
+				<div class="sep"></div>
+			</div>
+			<div id="deal_details_accessory" style="margin-bottom:20px;">
+				<span class="deal_details_seller" fbid="{{ deal_info["seller_fbid"] }}">{{ deal_info["seller_name"] }}</span>
+				<span class="deal_details_date">{{ deal_info["created_at"] }}</span>
+			</div>
+			<div id="deal_details_content">
+				<div id="deal_details_desc">{{ deal_info["details"] }}</div>
+				<div class="sep"></div>
+				<div id="deal_details_location" val="{{ deal_info["disp_addr"] }}"></div>
+				<div class="sep"></div>
+			</div>
+			<div id="deal_details_social">
+				<div style="margin-top: 10px;">
+					<a href="#" onclick="showConversationInput(this); return false;">Contact Seller</a><br/>
+					<div style="display: none;">
+						<textarea id="social_message" style="border:1px solid #666666; margin-top:10px;" cols="60" rows="5"></textarea>
+						<br/>
+						<a href="#" onclick="sendConversation(); return false;">Send</a>
+						<span class="vertical_sep">|</span>
+						<a href="#" onclick="cancelConversationInput(); return false;">Cancel</a>
+					</div>
+				</div>
+				<fb:comments href="" num_posts="10" width="450"></fb:comments>
+			</div>
+		</div>
+		<div id="deal_details_photo">
+			{% if deal_info.has_key(str("imgs")) %}
+				<div id="deal_details_photo_list">
+					{% for i in range( len(deal_info["imgs"]) ) %}
+						<img pid="{{ deal_info["pids"][i] }}" width="80px" height="80px" class="deal_details_photo_item" onclick="showDealDetailsImg(this);return false;" src="{{ escape(handler.settings["base_url"])+"static/upload_img/"+deal_info["imgs"][i] }}">
+					{% end %}
+				</div>
+			{% end %}
+			<div id="deal_details_photo_body">
+				<div id="deal_details_img_container">
+					{% if deal_info.has_key("imgs") %}
+						<img id="deal_details_img_photo" src="{{ escape(handler.settings["base_url"])+"static/upload_img/"+deal_info["imgs"][0] }}"/>
+					{% end %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% end %}

@@ -1,0 +1,43 @@
+{% extends "home.html" %}
+
+{% block navigator %}
+{% end %}
+
+{% block content %}
+	<div id="conversation_container" class="content">
+		<div id="conversation_deals">
+			{% if len(deals)==0 %}
+				<div>
+					No more conversation.
+				</div>
+			{% else %}
+				{% for deal in deals %}
+					<div class="conversation_deal" id={{ str(deal["id"]) }} onclick="showContacts(this); return false;">
+						<div style="width:100%;">
+							<div class="conversation_deal_desc">{{ deal["simple_desc"] }}</div>
+							<div class="conversation_deal_price">{{ str(deal["min_price"])+"$-"+str(deal["max_price"])+"$" }}</div>
+							<div class="sep"></div>
+						</div>
+						<div class="conversation_deal_date">{{ deal["created_at"] }}</div>
+					</div>
+				{% end %}
+				<div style="margin-top: 25px;">
+				{% if offset==0 %}
+					<span style="float:right;"><a href={{"conversation?uid="+str(uid)+"&p="+str(offset+1)}}>=></a></span>
+				{% else %}
+					<span style="float:left;"><a href={{"conversation?uid="+str(uid)+"&p="+str(offset-1)}}><=</a></span>
+					<span style="float:right;"><a href={{"conversation?uid="+str(uid)+"&p="+str(offset+1)}}>=></a></span>
+				{% end %}
+				</div>
+			{% end %}
+		</div>
+		<div id="conversation_contacts">
+			<center>
+			<div id="conversation_contacts_container" style="padding: 5px 5px 5px 5px;">
+			</div>
+			</center>
+		</div>
+		<div id="conversation_messages"></div>
+		<div class="sep"></div>
+	</div>
+{% end %}

@@ -1,0 +1,50 @@
+{% extends "home.html" %}
+
+{% block navigator %}
+	{% if last and last!=-1 %}
+		{% if int(deals[0]["id"]) == int(last) %}
+		{% else %}
+			<a href="{{ "deal?category="+str(deals[0]["category"])+"&more="+str(deals[0]["id"]) }}" onclick="" style="margin-right:10px;"><=</a>
+		{% end %}
+		
+		{% if int(deals[-1]["id"]) == int(first) %}
+		{% else %}
+			<a href="{{ "deal?category="+str(deals[0]["category"])+"&less="+str(deals[-1]["id"]) }}" onclick="" style="margin-left:10px;">=></a>
+		{% end %}
+	{% else %}
+		
+	{% end %}
+{% end %}
+
+{% block content %}
+	<div id="content_show_deals" class="content">
+		<div id="content_deals_container">
+			{% if deals %}
+				{% for deal in deals %}
+					{{ modules.Deal(deal) }}
+				{% end %}
+			{% else %}
+			{% end %}		
+		</div>
+		<div id="deal_category_container">
+			<div class="deal_category_item" value="0"><a href="{{escape(handler.settings["base_url"])+"deal?category=0&offset=0"}}" onclick="return isLocationSelected(this);">Baby&Kids Stuff</a></div>
+			<div class="deal_category_item" value="10"><a href="{{escape(handler.settings["base_url"])+"deal?category=10&offset=0"}}" onclick="return isLocationSelected(this);">Book</a></div>
+			<div class="deal_category_item" value="20"><a href="{{escape(handler.settings["base_url"])+"deal?category=20&offset=0"}}" onclick="return isLocationSelected(this);">Cars&Accessories</a></div>
+			<div class="deal_category_item" value="30"><a href="{{escape(handler.settings["base_url"])+"deal?category=30&offset=0"}}" onclick="return isLocationSelected(this);">Clothes&Accessories</a></div>
+			<div class="deal_category_item" value="40"><a href="{{escape(handler.settings["base_url"])+"deal?category=40&offset=0"}}" onclick="return isLocationSelected(this);">Collectibles</a></div>
+			<div class="deal_category_item" value="50"><a href="{{escape(handler.settings["base_url"])+"deal?category=50&offset=0"}}" onclick="return isLocationSelected(this);">Computers</a></div>
+			<div class="deal_category_item" value="60"><a href="{{escape(handler.settings["base_url"])+"deal?category=60&offset=0"}}" onclick="return isLocationSelected(this);">Crafts</a></div>
+			<div class="deal_category_item" value="70"><a href="{{escape(handler.settings["base_url"])+"deal?category=70&offset=0"}}" onclick="return isLocationSelected(this);">Electronics</a></div>
+			<div class="deal_category_item" value="80"><a href="{{escape(handler.settings["base_url"])+"deal?category=80&offset=0"}}" onclick="return isLocationSelected(this);">Food</a></div>
+			<div class="deal_category_item" value="90"><a href="{{escape(handler.settings["base_url"])+"deal?category=90&offset=0"}}" onclick="return isLocationSelected(this);">Furniture</a></div>
+			<div class="deal_category_item" value="100"><a href="{{escape(handler.settings["base_url"])+"deal?category=100&offset=0"}}" onclick="return isLocationSelected(this);">Health&Beauty</a></div>
+			<div class="deal_category_item" value="110"><a href="{{escape(handler.settings["base_url"])+"deal?category=110&offset=0"}}" onclick="return isLocationSelected(this);">Home&Garden</a></div>
+			<div class="deal_category_item" value="120"><a href="{{escape(handler.settings["base_url"])+"deal?category=120&offset=0"}}" onclick="return isLocationSelected(this);">Jewelry</a></div>
+			<div class="deal_category_item" value="130"><a href="{{escape(handler.settings["base_url"])+"deal?category=130&offset=0"}}" onclick="return isLocationSelected(this);">Movies&Music&Video games</a></div>
+			<div class="deal_category_item" value="140"><a href="{{escape(handler.settings["base_url"])+"deal?category=140&offset=0"}}" onclick="return isLocationSelected(this);">Musical Instruments</a></div>
+			<div class="deal_category_item" value="150"><a href="{{escape(handler.settings["base_url"])+"deal?category=150&offset=0"}}" onclick="return isLocationSelected(this);">Office</a></div>
+			<div class="deal_category_item" value="160"><a href="{{escape(handler.settings["base_url"])+"deal?category=160&offset=0"}}" onclick="return isLocationSelected(this);">Sports&Bicycles</a></div>
+			<div class="deal_category_item" value="170"><a href="{{escape(handler.settings["base_url"])+"deal?category=170&offset=0"}}" onclick="return isLocationSelected(this);">Tickets</a></div>
+		</div>
+	</div>
+{% end %}

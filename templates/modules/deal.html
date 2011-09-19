@@ -1,0 +1,13 @@
+<div class="content_deal_item" deal_id={{deal["id"]}} category={{deal["category"]}}>
+	<div class="content_deal_item_body">
+		<div class="deal_simple_desc"><a href={{ "deal/"+str(deal["id"]) }}>{{deal["simple_desc"]}}</a></div>
+		<div class="deal_price">{{ str(deal["min_price"])+"$-"+str(deal["max_price"])+"$" }}</div>
+	</div>
+	<div class="sep"></div>
+	<div class="content_deal_item_accessory">
+		<span class="deal_seller" fbid={{deal["seller_fbid"]}}>
+			{{ deal["seller_name"] }}
+		</span>
+		<span class="deal_date">{{ deal["created_at"] }}</span>
+	</div>
+</div>

@@ -1,0 +1,241 @@
+<html>
+
+<head>
+   <title>{{ escape(handler.settings["title"]) }}</title>
+   
+   <script type="text/javascript" src="{{ static_url("config.js") }}"></script>
+   <script type="text/javascript" src="{{ static_url("jquery.js") }}"></script>
+   <script type="text/javascript" src="{{ static_url("us_city_list.js") }}"></script>
+   <script type="text/javascript" src="{{ static_url("home.js") }}"></script>
+   <script type="text/javascript" src="{{ static_url("display_deals.js") }}"></script>
+   <script type="text/javascript" src="{{ static_url("fileuploader.js") }}"></script>
+   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+   
+   <link rel="stylesheet" type="text/css" href="{{ static_url("home.css") }}"/>
+   <link rel="stylesheet" type="text/css" href="{{ static_url("fileuploader.css") }}"/>
+</head>
+
+<body>
+	<!-- Facebook robot -->
+	<div id = "fb-root"></div>
+	<script src = "http://connect.facebook.net/en_US/all.js"></script>
+	<script>
+		FB.init({
+			appId: '117635791651288',
+			status: true,
+			cookie: true,
+			xfbml: true
+		});
+	</script>
+	<!-- Facebook robot ends -->
+
+	<!-- geo.js -->
+	<script type="text/javascript" src="{{ static_url("gears_init.js") }}"></script>
+	<script type="text/javascript" src="{{ static_url("geo.js") }}"></script>
+	<!-- -->
+
+	<div id = "menu">
+		<div id = "menu_icon">
+			<div style="float:right;"><a href="{{ escape(handler.settings["base_url"]) }}">Dong-Dong</a></div>
+		</div>
+		
+		<div id = "menu_nav">
+			<div class = "menu_nav_container">
+			{% block navigator %}
+			{% end %}
+			</div>
+		</div>
+		
+		<div id = "menu_login">
+			<a href="#" id="menu_user" onclick="showUserInfo(); return false;"></a>
+			<span class="vertical_sep" style="display:none;">|</span>
+			<a href="#" id="menu_location" onclick="changeLocation(); return false;" city="">Choose Location</a>
+			<span class="vertical_sep">|</span>
+			<a href="#" id="menu_auth" onclick="loginFacebook(); return false;">Log in</a>
+			<div id="menu_change_local" style="display: none;">
+				<select id="menu_city"></select>
+				<select id="menu_state"></select>
+				<a href="#" onclick="setLocation(); return false;">Set</a>
+			</div>
+		</div>
+	</div>
+	
+	<div style="clear:both;"></div>
+	
+	<center>
+		<div id = "status" style="display: none;">
+			<span id="status_content"></span>
+			<span id="status_close" style="float: right; font-family: Arial;" onclick="closeStatus(); return false;">x</span>
+		</div>
+	</center>
+	
+	<div id = "sidebar">
+		<div style="margin-top: 20px;" id="sidebar_act">
+			<div><a href="#" onclick="showDeals(); return false;">Deals</a></div>
+			<div><a href="#" onclick="showSearch(); return false;">Search</a></div>
+			<div><a href="#" onclick="authenticateByFB(showPublishDeal); return false;">Publish</a></div>
+			<div><a href="#" onclick="authenticateByFB(showWishlist); return false;" }}">Make Wish</a></div>
+		</div>
+		<div style="clear:both;"></div>
+		<div style="" id="sidebar_comm">
+			<div><a href="#" onclick="authenticateByFB(showConversation); return false;">Conversation</a></div>
+			<div>Recommend</div>
+		</div>
+		<div style="clear:both;"></div>
+		<div style="" id="sidebar_stat">
+			<div>History</div>
+		</div>
+	</div>
+	
+	<div id = "content_wrapper">
+		<div id="content">
+			{% block content %}
+			<div id="content_welcome" class="content">
+				Welcome to Dong-Dong!
+			</div>
+			{% end %}
+			
+			<div id="content_search_deal" class="content">
+				<span style="margin-bottom: 20px; border-bottom: 1px solid #CCCCCC; float: left;">Search the deals</span>
+				<div class="sep"></div>
+				
+				<label>Category<span class="small">Choose a category</span></label>
+				<select id="search_category">
+					<option value="-1">--</option>
+					<option value="0">Baby&Kids Stuff</option><option value="10">Book</option><option value="20">Cars&Accessories</option>
+					<option value="30">Clothes&Accessories</option><option value="40">Collectibles</option><option value="50">Computers</option>
+					<option value="60">Crafts</option><option value="70">Electronics</option><option value="80">Food</option>
+					<option value="90">Furniture</option><option value="100">Health&Beauty</option><option value="110">Home&Garden</option>
+					<option value="120">Jewelry</option><option value="130">Movies&Music&Video games</option><option value="140">Musical Instruments</option>
+					<option value="150">Office</option><option value="160">Sports&Bicycles</option><option value="170">Tickets</option>
+				</select>
+				<div class="sep"></div>
+					
+				<label>Keywords<span class="small">keywords to search</span></label>
+				<textarea name="simple_desc" id="search_keyword" cols="30" rows="2"/></textarea>
+				<div class="sep"></div>
+				
+				<label>Price: <span class="small">Price range(min-max)</span></label>
+				<input type="text" name="min_price" id="search_min_price" style="width:50px" class="withstyle"/>
+				<span style="float:left">$~</span>
+				<input type="text" name="max_price" id="search_max_price" style="width:50px" class="withstyle"/>
+				<span style="float:left">$</span>
+				<div class="sep"></div>
+				
+				<a href="#" onclick="searchDeal(); return false;">Search</a>
+				<span class="vertical_sep">|</span>
+				<a href="#" onclick="clearContent(); return false;">Cancel</a>
+			</div>
+			
+			<div id="content_user_register" class="content">
+				<span id="first_prompt" style="margin-bottom: 20px; border-bottom: 1px solid #CCCCCC; float: left;">Welcome! Be our registered user!</span>
+				<div class="sep"></div>
+				
+				<label>Dong-Dong Name <span class="small">Could be different from your facebook name</span></label>
+				<input type="text" class="register_normal_input" name="dongname" id="dongname"/><div class="sep"></div>
+						
+				<label>Phone number <span class="small">(optional)</span></label>
+				<input type="text" class="register_normal_input" name="phone" id="phone"/><div class="sep"></div>
+						
+				<label>Address <span class="small">Street address(optional)</span></label>
+				<input type="text" class="register_normal_input" name="street" id="street" style="width:250px;"/>
+				<select id="city"></select>
+				<select id="state"></select>
+				<div class="sep"></div>
+				
+				<label>Facebook Name <span class="small">Facebook user name</span></label>
+				<input type="text" class="register_normal_input" name="fbname" id="fbname" disabled="disabled"/><div class="sep"></div>
+						
+				<label>Email <span class="small">Facebook email</span></label>
+				<input type="text" class="register_normal_input" name="email" id="email"/><div class="sep"></div>
+						
+				<label>Gender <span class="small">Facebook gender</span></label>
+				<select id="gender" disabled="disabled">
+					<option value="male">male</option>
+					<option value="female">female</option>
+				</select><div class="sep"></div>
+						
+				<a href="#" id="saveInfo" onclick="saveUserInfo(); return false;">Save</a>
+				<span class="vertical_sep">|</span>
+				<a href="#" id="cancelInfo" onclick="clearContent(); return false;">Close</a>
+			</div>
+			
+			<div id="content_publish_deal" class="content">
+				<div id="content_publish_deal_info">
+				<span style="margin-bottom: 20px; border-bottom: 1px solid #CCCCCC; float: left;">Publish your deal!</span>
+				<div class="sep"></div>
+				
+				<form id="deal_upload_photo_form" action="{{ escape(handler.settings["base_url"])+"upload" }}" enctype="multipart/form-data" method="post">
+					<label>Upload photos<span class="small">A picture is worth a thousand words</span></label>
+					<input type="file" name="deal_photo"/>
+					<input type="submit" value="Post"/>
+					<iframe id="upload_target" name="upload_target" src="" style="width:0;height:0;border:#fff;"></iframe>
+				</form>
+				<div class="sep"></div>
+				
+				<label>Category<span class="small">Choose a category</span></label>
+				<select id="deal_category">
+					<option value="-1">--</option>
+					<option value="0">Baby&Kids Stuff</option><option value="10">Book</option><option value="20">Cars&Accessories</option>
+					<option value="30">Clothes&Accessories</option><option value="40">Collectibles</option><option value="50">Computers</option>
+					<option value="60">Crafts</option><option value="70">Electronics</option><option value="80">Food</option>
+					<option value="90">Furniture</option><option value="100">Health&Beauty</option><option value="110">Home&Garden</option>
+					<option value="120">Jewelry</option><option value="130">Movies&Music&Video games</option><option value="140">Musical Instruments</option>
+					<option value="150">Office</option><option value="160">Sports&Bicycles</option><option value="170">Tickets</option>
+				</select><div class="sep"></div>
+					
+				<label>One sentence description<span class="small">Less than 60 words</span></label>
+				<textarea name="simple_desc" id="deal_simple_desc" cols="30" rows="2"/></textarea>
+				<div class="sep"></div>
+					
+				<label>Sold at:<span class="small">Street address(optional)</span></label>
+				<input type="text" name="sld_addr" id="deal_sld_addr" style="width:200px;" class="withstyle"/>
+				<span id="sld_addr_city" style="float: left;font-size: 12px;"></span>
+				<input type="checkbox" id="deal_addr_blur" class="withstyle" onclick="showBlurredAddr();"/><span style="font-size:11px;">Blur</span>
+				<div class="sep"></div>
+					
+				<div id="deal_disp_addr_container" style="display:none;">
+					<label>Displayed address:<span class="small">Address displayed to public</span></label>
+					<input type="text" name="disp_addr" id="deal_disp_addr" disabled="disabled" class="withstyle" style="width: 200px;"/>
+					<div class="sep"></div>
+				</div>
+					
+				<label>Price: <span class="small">Price range(min-max)</span></label>
+				<input type="text" name="min_price" id="deal_min_price" style="width:50px" class="withstyle"/>
+				<span style="float:left">$~</span>
+				<input type="text" name="max_price" id="deal_max_price" style="width:50px" class="withstyle"/>
+				<span style="float:left">$</span>
+				<div class="sep"></div>
+					
+				<label>Description: <span class="small">Details(optional)</span></label>
+				<textarea id="deal_details" cols="50" rows="10"></textarea>
+				<div class="sep"></div>
+					
+				<label>Contact phone: <span class="small">(optional)</span></label>
+				<input type="text" name="phone" id="deal_phone" style="width:200px;" class="withstyle"/>
+				<div class="sep"></div>
+				
+				<label>Contact email: <span class="small">(optional)</span></label>
+				<input type="text" name="email" id="deal_email" style="width:200px;" class="withstyle"/>
+				<div class="sep"></div>
+					
+				<a href="#" onclick="publishDeal(); return false;">Publish</a>
+				<span class="vertical_sep">|</span>
+				<a href="#" onclick="clearContent(); return false;">Cancel</a>
+				</div>		
+				
+				<div id="content_publish_deal_img">
+					<div id="content_publish_deal_img_list"></div>
+					<div id="content_publish_deal_img_body">
+						<div id="deal_img_container">
+							<img id="deal_img_photo" src=""/>
+						</div>
+					</div>
+				</div>
+				<div class="sep"></div>			
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

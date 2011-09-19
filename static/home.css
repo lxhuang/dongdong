@@ -1,0 +1,530 @@
+body {
+    font-family: Georgia;
+}
+
+a {
+    color: black;
+}
+
+.vertical_sep {
+    color: #666666;
+}
+.sep {
+    clear: both;
+}
+
+/*************/
+/* menu */
+/*************/
+
+#menu {
+    height: 80px;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+#menu_icon {
+    float: left;
+    width: 30%;
+    margin-top: 30px;
+}
+
+#menu_nav {
+    float: left;
+    width: 40%;
+    margin-top: 30px;
+}
+#menu_nav .menu_nav_container {
+    width:72px; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+#menu_login {
+    width: 30%;
+    float: right;
+    margin-top: 30px;
+}
+
+.status_fail {
+    margin: 2px 2px 2px 2px;
+    background-color: #F2CBD5;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    width: 400px;
+}
+.status_success {
+    margin: 2px 2px 2px 2px;
+    background-color: #CEF5E3;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    width: 400px;
+}
+
+/*************/
+/* sidebar */
+/*************/
+
+#sidebar {
+    width:  15%;
+    float:  left;
+    height: 500px;
+    border-right: 1px solid #CCCCCC;
+}
+#sidebar #sidebar_act {
+    height: 100px;
+    margin-bottom: 20px;
+    float: right;
+    border-bottom: 1px solid #CCCCCC;
+}
+#sidebar #sidebar_comm {
+    height: 100px;
+    margin-bottom: 20px;
+    float: right;
+    border-bottom: 1px solid #CCCCCC;
+}
+#sidebar #sidebar_stat {
+    height: 100px;
+    float: right;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+/*************/
+/* content */
+/*************/
+
+#content_wrapper {
+    width: 80%;
+    float: left;
+    height: 700px;
+}
+#content {
+    margin-left: 10px;
+    height: 700px;
+}
+
+/*************/
+/* deals */
+/*************/
+#content_show_deals {
+    width: 100%;
+    margin-left: 20px;
+}
+#content_deals_container {
+    float: left;
+    width: 75%;
+}
+div.content_deal_item {
+    width: 100%;
+    border-bottom: 1px solid #DDDDDD;
+}
+div.content_deal_item_body {margin-bottom: 4px;}
+div.deal_simple_desc {
+    width: 75%;
+    float: left;
+    margin-right: 3px;
+}
+div.deal_price {
+    width: 20%;
+    float: left;
+    font-size: 20px;
+    font-family: Arial;
+}
+div.content_deal_item_accessory {
+    height: 30px;
+}
+span.deal_seller {
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Arial;
+    color: #36139E !important;
+    margin-right: 10px;
+}
+span.deal_date {
+    font-size: 10px;
+    font-family: "lucida grande",tahoma;
+    color: #666666;
+    margin-right: 10px;
+}
+span.deal_addr {
+    font-size: 12px;
+    margin-right: 10px;    
+}
+
+#deal_category_container {
+    float: right;
+    width: 20%;
+    border-left: 1px solid #CCCCCC;
+}
+div.deal_category_item {
+    text-align: left;
+    font-size: 13px;
+    border-bottom: 1px solid #CCCCCC;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+div.deal_category_item:active {}
+div.deal_category_item:visited {}
+div.deal_category_item:hover {
+    cursor: pointer;
+    background-color: #ABB5F7;
+}
+
+/*************/
+/* deal details */
+/*************/
+#content_deal_details {
+    width: 100%;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+#deal_details_text {
+    width: 580px;
+    float: left;
+}
+#deal_details_simple_desc {
+    width: 70%;
+    float: left;
+    font-size: 20px;
+}
+#deal_details_price {
+    font-family: Arial;
+    font-size: 20px;
+    width: 25%;
+    float: left;
+}
+span.deal_details_seller {
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Arial;
+    color: #36139E !important;
+    margin-right: 10px;
+}
+span.deal_details_date {
+    font-size: 10px;
+    font-family: "lucida grande",tahoma;
+    color: #666666;
+    margin-right: 10px;
+}
+#deal_details_content {
+    border-top: 1px solid #CCCCCC;
+}
+#deal_details_desc {
+    margin-top: 5px;
+    float: left;
+}
+#deal_details_location {
+    margin-top: 10px;
+    width: 400px;
+    height:200px;
+    float: left;
+}
+#deal_details_social {
+    margin-top: 10px;
+    border-top: 1px solid #CCCCCC;
+}
+#deal_details_photo {
+    width: 400px;
+    float: left;
+    margin-left: 5px;
+    border-left: 1px solid #CCCCCC;
+}
+#deal_details_photo_list {
+    width: 400px;
+    height: 80px;
+    overflow: auto;
+    border-bottom: 1px solid #CCCCCC;
+    padding-bottom: 5px;
+}
+.deal_details_photo_item {
+    padding: 2px 2px 2px 2px;
+}
+.deal_details_photo_item:active {}
+.deal_details_photo_item:visited {}
+.deal_details_photo_item:hover {
+    cursor: pointer;
+    background-color: #ABB5F7;
+}
+#deal_details_photo_body {}
+#deal_details_img_photo {
+    max-height:400px;
+    max-width: 400px;
+    margin-left: 2px;
+    margin-top:  2px;
+}
+
+
+/*************/
+/* search deals */
+/*************/
+#content_search_deal {
+    width: 100%;
+    margin-left: 20px;
+    display: none;
+}
+#content_search_deal label {
+    float: left;
+    display: block;
+    text-align: right;
+    width: 150px;
+    margin-bottom: 10px;
+}
+#content_search_deal .small {
+    color: #666666;
+    display: block;
+    font-size: 11px;
+    text-align: right;
+    width: 150px;    
+}
+#content_search_deal input.withstyle{
+    float: left;
+    font-size: 12px;
+    padding: 4px 2px;
+    border: solid 1px;
+}
+
+
+/*************/
+/* publish deal */
+/*************/
+#content_publish_deal {
+    width: 100%;
+    margin-left: 20px;
+    display: none;
+}
+#content_publish_deal_info {
+    width: 580px;
+    border-right: 1px solid #CCCCCC;
+    float: left;
+}
+#content_publish_deal label {
+    float: left;
+    display: block;
+    text-align: right;
+    width: 150px;
+    margin-bottom: 10px;
+}
+#content_publish_deal .small {
+    color: #666666;
+    display: block;
+    font-size: 11px;
+    text-align: right;
+    width: 150px;
+}
+#content_publish_deal input.withstyle{
+    float: left;
+    font-size: 12px;
+    padding: 4px 2px;
+    border: solid 1px;
+}
+
+#content_publish_deal_img {
+    float: left;
+    width: 400px;
+    margin-left: 5px;
+    display: none;
+    
+}
+#content_publish_deal_img_list {
+    width: 400px;
+    height: 80px;
+    overflow: auto;
+    border-bottom: 1px solid #CCCCCC;
+    padding-bottom: 5px;
+}
+.deal_img_list_item {
+    padding: 2px 2px 2px 2px;
+}
+.deal_img_list_item:active {}
+.deal_img_list_item:visited {}
+.deal_img_list_item:hover {
+    cursor: pointer;
+    background-color: #ABB5F7;
+}
+#content_publish_deal_img_body {
+    padding-top: 5px;
+}
+#deal_img_container img {
+    max-height: 400px;
+    max-width: 400px;
+}
+
+
+/*************/
+/* conversation */
+/*************/
+div#conversation_container {
+    width: 100%;
+}
+
+div#conversation_deals {
+    float: left;
+    width: 25%;
+    border-right: 1px solid #CCCCCC;
+    padding:0 5px 0 0;
+}
+div.conversation_deal {
+    margin-top: 15px;
+    padding: 4px 4px 4px 4px;
+}
+div.conversation_deal:active {}
+div.conversation_deal:visited {}
+div.conversation_deal:hover {
+    background-color: #ABB5F7;
+    cursor: pointer;
+}
+div.conversation_deal_desc {
+    float: left;
+    width: 60%;
+    font-size: 13px;
+}
+div.conversation_deal_price {
+    float: left;
+    width: 35%;
+    margin-left: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: Arial;
+}
+div.conversation_deal_date {
+    float: left;
+    font-size: 11px;
+    color: #666666;
+}
+
+div#conversation_contacts {
+    float: left;
+    width: 25%;
+}
+div.conversation_contact {
+    width: 60%;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #DDDDDD;
+}
+div.conversation_contact:active {}
+div.conversation_contact:visited {}
+div.conversation_contact:hover {
+    background-color: #ABB5F7;
+    cursor: pointer;    
+}
+div.conversation_contact_name {
+    float: left;
+}
+div.conversation_contact_unread {
+    float: right;
+}
+
+div#conversation_messages {
+    float: left;
+    width: 40%;
+    border-left: 1px solid #CCCCCC;
+}
+div.conversation_message {
+    margin-left: 10px;
+    margin-top: 10px;
+    border-bottom: 1px solid #CCCCCC;
+}
+div.conversation_message_content {
+    font-size: 14px;
+}
+div.conversation_message_control .message_date {
+    color: #666666;
+    float: left;
+    font-size: 13px;
+}
+div.conversation_message_control .message_control {
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+div#conversation_container .selected {
+    background-color: #D3D6E8;
+}
+
+/*************/
+/* wishlist */
+/*************/
+div#wishlist_container {
+    width: 100%;
+    margin-left: 20px;
+}
+
+div#wishlist_user_info {
+    margin-top: 20px;
+    border-bottom: 1px solid #CCCCCC;
+    padding: 0 0 10px 0;
+}
+div#wishlist_user_thumb {
+    float: left;
+    margin-right: 100px;
+}
+div#wishlist_user_name {
+    float: left;
+    font-weight: bold;
+}
+
+div#wishlist_input {
+    margin-top: 20px;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+div#wishlist_items {
+    margin-top: 20px;
+}
+div.wishlist_item {
+    width: 100%;
+    margin-bottom: 15px;
+}
+div.wishlist_item_content {
+    float: left;
+    width: 70%;
+}
+span.wishlist_item_content_text {
+    font-size: 20px;
+    padding: 0 10px 0 0;
+}
+span.wishlist_item_content_date {
+    font-family: Arial; 
+    font-size: 12px;
+    color: #666666;
+}
+div.wishlist_item_control {
+    float: left;
+    width: 25%;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/*************/
+/* register */
+/*************/
+#content_user_register {
+    width: 600px;
+    margin-left: 20px;
+    margin-top: 20px;
+    border-right: 1px solid #CCCCCC;
+    display: none;
+}
+#content_user_register label {
+    float: left;
+    display: block;
+    text-align: right;
+    width: 260px;
+    margin-bottom: 10px;
+}
+#content_user_register .small {
+    color: #666666;
+    display: block;
+    font-size: 11px;
+    text-align: right;
+    width: 260px;
+}
+#content_user_register .register_normal_input {
+    float: left;
+    font-size: 12px;
+    padding: 4px 2px;
+    border: solid 1px;
+    width: 300px;
+}
