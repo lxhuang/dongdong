@@ -1,1 +1,11 @@
-This is readme.
+Tornado web server is an async web server open sourced by Facebook.
+
+Sphinx is an open source search engine.
+
+I built this website in order to learn Tornado + Sphinx + Python + Facebook API + Google Map API.
+
+It also uses the geolocation property from HTML5 to determine your location.
+
+Now the website is deployed on Amazon Web Service. http://www.tornadopy.info
+
+
