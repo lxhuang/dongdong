@@ -6,6 +6,6 @@ I built this website in order to learn Tornado + Sphinx + Python + Facebook API 
 
 It also uses the geolocation property from HTML5 to determine your location.
 
-Now the website is deployed on Amazon Web Service. http://www.tornadopy.info
+Now the website is deployed on Amazon Web Service. https://www.tornadopy.info
 
 
