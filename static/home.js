@@ -1,4 +1,3 @@
-
 var access_token = "";
 var facebook_name = "";
 var facebook_gender = "";
@@ -119,7 +118,8 @@ function authenticateByFB(f) {
 }
 function checkLoginStatus() {
 	FB.getLoginStatus(function(response){
-		if( response.session ) {
+		//if( response.session ) {
+		if( response.status === "connected" ) {
 			loginCallback(response);
 		}
 	});
